@@ -8,4 +8,9 @@ class PagesController extends Controller
     {
         return view('index');
     }
+
+    public function uses()
+    {
+        return view('uses');
+    }
 }
