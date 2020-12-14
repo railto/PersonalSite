@@ -43,4 +43,18 @@ class ArticlesTest extends TestCase
         $response->assertDontSee($unpublishedArticle->title);
         $response->assertDontSee($advancedDatePublishedArticle->title);
     }
+
+    /** @test */
+    public function aVisitorCanViewAPublishedPost()
+    {
+        $this->withoutExceptionHandling();
+        $article = Article::factory()->create();
+
+        $response = $this->get("/blog/{$article->slug}");
+
+        $response->assertStatus(200);
+        $response->assertSee($article->title);
+        $response->assertSee(Carbon::parse($article->published_at)->format('jS F Y'), true);
+        $response->assertSee($article->content);
+    }
 }

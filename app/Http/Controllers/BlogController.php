@@ -12,4 +12,9 @@ class BlogController extends Controller
 
         return view('blog.index', ['articles' => $articles]);
     }
+
+    public function show(Article $article)
+    {
+        return view('blog.article', ['article' => $article]);
+    }
 }
