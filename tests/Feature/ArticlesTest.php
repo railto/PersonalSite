@@ -47,7 +47,6 @@ class ArticlesTest extends TestCase
     /** @test */
     public function aVisitorCanViewAPublishedPost()
     {
-        $this->withoutExceptionHandling();
         $article = Article::factory()->create();
 
         $response = $this->get("/blog/{$article->slug}");
@@ -56,5 +55,13 @@ class ArticlesTest extends TestCase
         $response->assertSee($article->title);
         $response->assertSee(Carbon::parse($article->published_at)->format('jS F Y'), true);
         $response->assertSee($article->content);
+    }
+
+    /** @test */
+    public function aVisitorGets404WhenTryingToViewPostThatDoesNotExist()
+    {
+        $response = $this->get('/blog/this-article_does_not_exist');
+
+        $response->assertStatus(404);
     }
 }
