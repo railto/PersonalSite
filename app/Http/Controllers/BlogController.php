@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $articles = Article::where('published_at', '<', date("Y-m-d H:i:s"))->orderBy('published_at', 'desc')->get();
+        $articles = Article::where('published_at', '<', date("Y-m-d H:i:s"))->orderBy('published_at', 'desc')->simplePaginate(10);
 
         return view('blog.index', ['articles' => $articles]);
     }

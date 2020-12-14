@@ -43,6 +43,30 @@ class ArticlesTest extends TestCase
     }
 
     /** @test */
+    public function blogPageIsPaginated()
+    {
+        $articles = Article::factory()->count(15)->create();
+        $newArticle = Article::factory()->create([
+            'published_at' => Carbon::now()->subDays(1),
+        ]);
+
+        $oldArticle = Article::factory()->create([
+            'published_at' => Carbon::now()->subYears(3),
+        ]);
+
+        $response = $this->get('/blog');
+
+        $response->assertStatus(200);
+        $response->assertSee($newArticle->title);
+        $response->assertDontSee($oldArticle->title);
+
+        $response2 = $this->get('/blog?page=2');
+        $response2->assertDontSee($newArticle->title);
+        $response2->assertSee($oldArticle->title);
+
+    }
+
+    /** @test */
     public function aVisitorCanViewAPublishedPost()
     {
         $article = Article::factory()->create();

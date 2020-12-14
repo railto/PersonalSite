@@ -17,5 +17,8 @@
             </a>
         @endforeach
     </div>
+    <div class="flex items-center justify-center mt-6">
+        {{ $articles->links() }}
+    </div>
 </section>
 @endsection()
