@@ -35,10 +35,12 @@ class ArticleFactory extends Factory
 
     public function unpublished()
     {
-        $this->state(
-            [
-                'published_at' => null,
-            ]
+        return $this->state(
+            function (array $attributes) {
+                return [
+                    'published_at' => null,
+                ];
+            }
         );
     }
 }
