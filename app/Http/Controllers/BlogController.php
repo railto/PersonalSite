@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -15,6 +16,10 @@ class BlogController extends Controller
 
     public function show(Article $article)
     {
+        if (!$article->published_at || Carbon::parse($article->published_at)->greaterThan(Carbon::now())) {
+            abort(404);
+        }
+
         return view('blog.article', ['article' => $article]);
     }
 }

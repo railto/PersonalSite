@@ -29,11 +29,9 @@ class ArticlesTest extends TestCase
     {
         $publishedArticles = Article::factory()->count(2)->create();
         $unpublishedArticle = Article::factory()->unpublished()->create();
-        $advancedDatePublishedArticle = Article::factory()->create(
-            [
-                'published_at' => Carbon::now()->addDay(),
-            ]
-        );
+        $advancedDatePublishedArticle = Article::factory()->create([
+            'published_at' => Carbon::now()->addDay(),
+        ]);
 
         $response = $this->get('/blog');
 
@@ -60,8 +58,36 @@ class ArticlesTest extends TestCase
     /** @test */
     public function aVisitorGets404WhenTryingToViewPostThatDoesNotExist()
     {
-        $response = $this->get('/blog/this-article_does_not_exist');
+        $response = $this->get('/blog/this-article-does-not-exist');
 
         $response->assertStatus(404);
+    }
+
+    /** @test */
+    public function aGuestCanNotViewUnPublishedPost()
+    {
+        $article = Article::factory()->unpublished()->create();
+
+        $response = $this->get("/blog/{$article->slug}");
+
+        $response->assertStatus(404);
+        $response->assertDontSee($article->title);
+        $response->assertDontSee(Carbon::parse($article->published_at)->format('jS F Y'), true);
+        $response->assertDontSee($article->content);
+    }
+
+    /** @test */
+    public function aGuestCanNotViewAPostWithFuturePublishedDate()
+    {
+        $article = Article::factory()->create([
+            'published_at' => Carbon::now()->addDays(2),
+        ]);
+
+        $response = $this->get("/blog/{$article->slug}");
+
+        $response->assertStatus(404);
+        $response->assertDontSee($article->title);
+        $response->assertDontSee(Carbon::parse($article->published_at)->format('jS F Y'), true);
+        $response->assertDontSee($article->content);
     }
 }
