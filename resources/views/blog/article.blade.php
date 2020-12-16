@@ -6,7 +6,7 @@
         <span
             class="block text-gray-600 font-light text-sm mb-8">Posted: {{ Carbon\Carbon::parse($article->published_at)->format('jS F Y') }}</span>
         <p>
-            {{ $article->content }}
+            {{ \Illuminate\Mail\Markdown::parse($article->content) }}
         </p>
     </div>
 @endsection()

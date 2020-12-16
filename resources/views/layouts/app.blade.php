@@ -68,7 +68,7 @@
                            @click="isOpen = false">Home</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-white no-underline" href="#"
+                        <a class="inline-block py-2 px-4 text-white no-underline" href="{{ route('blog.index') }}"
                            @click="isOpen = false">Blog Articles</a>
                     </li>
                     <li class="mr-3">
@@ -99,7 +99,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div>
-                    <div class="text-gray-600">&copy; Mark Railton 2020</div>
+                    <div class="text-gray-600">&copy; Mark Railton {{ \Carbon\Carbon::now()->format('Y') }}</div>
                 </div>
 
                 <div class="flex items-center -mx-2">
