@@ -20,7 +20,8 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "parsedown/laravel": "^1.2",
         "sentry/sentry-laravel": "^2.3",
-        "spatie/laravel-backup": "^6.14"
+        "spatie/laravel-backup": "^6.14",
+        "spatie/laravel-sitemap": "^5.9"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('backup:run')->dailyAt('01:00')->evenInMaintenanceMode();
-        $schedule->command('twitter:update')->everyFourHours()->evenInMaintenanceMode();
+        $schedule->command('twitter:update')->everyFourHours();
+        $schedule->command('sitemap:generate')->dailyAt('01:30');
+        $schedule->command('backup:run')->dailyAt('03:00');
     }
 
     /**
