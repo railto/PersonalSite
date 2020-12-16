@@ -122,6 +122,7 @@
             </div>
         </div>
     </footer>
+    <script src="{{ mix('js/app.js') }}"></script>
 </main>
 </body>
 </html>
