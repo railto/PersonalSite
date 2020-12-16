@@ -148,9 +148,9 @@ return [
             /*
              * If this is set to null the default channel of the webhook will be used.
              */
-            'channel' => null,
+            'channel' => 'server-alerts',
 
-            'username' => null,
+            'username' => 'Laravel Backup',
 
             'icon' => null,
 
