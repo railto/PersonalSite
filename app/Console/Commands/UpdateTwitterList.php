@@ -38,7 +38,6 @@ class UpdateTwitterList extends Command
      */
     public function handle()
     {
-        // You can get all these via https://dev.twitter.com/
         $consumer_key = env('TWITTER_CONSUMER_KEY');
         $consumer_secret = env('TWITTER_CONSUMER_SECRET');
         $access_token = env('TWITTER_ACCESS_TOKEN');
@@ -247,5 +246,7 @@ class UpdateTwitterList extends Command
             }
             $this->info("Added ".count($users_to_add)." to the cycle list");
         }
+
+        return 0;
     }
 }
