@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('twitter:update')->everyFourHours();
         $schedule->command('sitemap:generate')->dailyAt('01:30');
         $schedule->command('backup:run')->dailyAt('03:00');
+        $schedule->command('schedule-monitor:clean')->daily();
     }
 
     /**
