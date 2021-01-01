@@ -1,13 +1,16 @@
 module.exports = {
   purge: [
-    './resources/views/**/*.blade.php',
-    './resources/css/**/*.css',
+      './resources/views/**/*.blade.php',
+      './resources/css/**/*.css',
   ],
+  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {}
+    extend: {},
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [
-    require('@tailwindcss/ui'),
-  ]
+      require('@tailwindcss/ui'),
+  ],
 }
