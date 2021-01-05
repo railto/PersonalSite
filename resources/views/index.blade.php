@@ -38,6 +38,7 @@
             </p>
         </div>
     </section>
+
     <section class="bg-white py-20">
         <div class="max-w-5xl px-6 mx-auto text-center">
             <h2 class="text-2xl font-semibold text-gray-800">Latest Blog Articles</h2>
@@ -71,4 +72,5 @@
             </div>
         </div>
     </section>
+    @include('_partials.newsletter-subscribe')
 @endsection()
