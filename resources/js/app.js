@@ -1,12 +1,14 @@
 require('alpinejs');
 import Prism from 'prismjs';
+import Vue from 'vue';
+import axios from 'axios';
 
-window.Vue = require('vue');
-window.axios = require('axios');
+window.Vue = Vue;
+window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-const files = require.context('./', true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+Vue.component('site-nav', require('./Components/SiteNav').default);
+Vue.component('newsletter-subscribe', require('./Components/NewsletterSubscribe').default);
 
 const app = new Vue({
     el: '#app',
