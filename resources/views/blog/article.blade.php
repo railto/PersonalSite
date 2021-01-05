@@ -9,5 +9,5 @@
             @parsedown($article->content)
         </p>
     </div>
-    @include('_partials.newsletter-subscribe')
+    <newsletter-subscribe />
 @endsection()

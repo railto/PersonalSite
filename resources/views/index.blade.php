@@ -72,5 +72,5 @@
             </div>
         </div>
     </section>
-    @include('_partials.newsletter-subscribe')
+    <newsletter-subscribe />
 @endsection()
