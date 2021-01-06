@@ -9,12 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
         "abraham/twitteroauth": "^2.0",
         "cocur/slugify": "^4.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
+        "laravel/sanctum": "^2.8",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
@@ -24,8 +26,7 @@
         "spatie/laravel-feed": "^3.1",
         "spatie/laravel-googletagmanager": "^2.6",
         "spatie/laravel-schedule-monitor": "^2.1",
-        "spatie/laravel-sitemap": "^5.9",
-        "ext-json": "*"
+        "spatie/laravel-sitemap": "^5.9"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
