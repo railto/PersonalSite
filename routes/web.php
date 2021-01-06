@@ -11,3 +11,5 @@ Route::get('/blog', 'App\Http\Controllers\BlogController@index')->name('blog.ind
 Route::get('/blog/{article}', 'App\Http\Controllers\BlogController@show')->name('blog.article');
 
 Route::get('/admin/{any?}', 'App\Http\Controllers\Admin\AdminController@index')->name('admin.index')->middleware(['auth:web']);
+
+Route::get('/logout', \App\Http\Controllers\Auth\LogoutController::class);
