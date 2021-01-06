@@ -1,14 +1,10 @@
-import Prism from 'prismjs';
-import Vue from 'vue';
-import axios from 'axios';
+require('./bootstrap');
 
-window.Vue = Vue;
-window.axios = axios;
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+import Vue from 'vue';
 
 const components = require.context('./App', true, /\.vue$/i)
 components.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], components(key).default))
 
-const app = new Vue({
+new Vue({
     el: '#app',
 });
