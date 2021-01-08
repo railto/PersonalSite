@@ -15,6 +15,7 @@
         "babel-plugin-prismjs": "^2.0.1",
         "cross-env": "^7.0",
         "laravel-mix": "^6.0.6",
+        "moment": "^2.29.1",
         "postcss": "^8.2.2",
         "postcss-import": "^14.0",
         "postcss-nested": "^5.0",
@@ -25,6 +26,7 @@
         "vue-loader": "^15.9.6",
         "vue-router": "^3.4.9",
         "vue-template-compiler": "^2.6.12",
+        "vuetable-2": "^2.0.0-beta.4",
         "vuex": "^3.6.0"
     }
 }

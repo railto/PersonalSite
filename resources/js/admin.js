@@ -9,6 +9,7 @@ import appStore from './Admin/Store/app';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+
 Vue.component('admin', require('./Admin/Admin.vue').default);
 
 const router = new VueRouter({
