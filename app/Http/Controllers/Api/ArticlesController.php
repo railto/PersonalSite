@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Exceptions\DuplicateEntryException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewArticleRequest;
 use App\Http\Resources\Article as ArticleResource;
 use App\Http\Resources\ArticleCollection;
 use App\Models\Article;
-use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
@@ -43,5 +41,14 @@ class ArticlesController extends Controller
         ]);
 
         return response(new ArticleResource($article), 201);
+    }
+
+    /**
+     * @param Article $article
+     * @return ArticleResource
+     */
+    public function show(Article $article): ArticleResource
+    {
+        return new ArticleResource($article);
     }
 }

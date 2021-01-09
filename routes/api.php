@@ -22,3 +22,4 @@ Route::post('/newsletter/subscribe', 'App\Http\Controllers\NewsletterController@
 
 Route::get('/articles', 'App\Http\Controllers\Api\ArticlesController@index');
 Route::post('/articles', 'App\Http\Controllers\Api\ArticlesController@store');
+Route::get('/articles/{article}','App\Http\Controllers\Api\ArticlesController@show');
