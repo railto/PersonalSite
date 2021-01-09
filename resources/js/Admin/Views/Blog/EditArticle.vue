@@ -68,7 +68,9 @@ export default {
         };
     },
     methods: {
-
+        ...mapActions({
+            flashMessage: 'messages/showMessage',
+        }),
         async getArticle(slug) {
             const response = await axios.get(`/api/articles/${slug}`);
 
