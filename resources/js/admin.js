@@ -9,6 +9,7 @@ import appStore from './Admin/Store/app';
 import Dashboard from "./Admin/Views/Dashboard";
 import ArticleList from "./Admin/Views/Blog/ArticleList";
 import AddArticle from "./Admin/Views/Blog/AddArticle";
+import EditArticle from "./Admin/Views/Blog/EditArticle";
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -33,6 +34,11 @@ const router = new VueRouter({
             path: '/articles/new',
             name: 'addArticle',
             component: AddArticle,
+        },
+        {
+            path: '/articles/:slug/edit',
+            name: 'editArticle',
+            component: EditArticle,
         },
     ],
 });

@@ -19,7 +19,7 @@
                 <td class="p-3 px-5">{{ article.published_at | formatDate }}</td>
                 <td class="p-3 px-5">{{ article.updated_at |formatDate }}</td>
                 <td class="p-3 px-5 flex justify-end">
-                    <button class="bg-indigo-600 text-white mr-3 py-1 px-2 " type="button">Edit</button>
+                    <button class="bg-indigo-600 text-white mr-3 py-1 px-2" type="button" @click="editArticle(article.slug)">Edit</button>
                     <button class="bg-red-600 text-white p-2 py-1 px-2" type="button">Delete</button>
                 </td>
             </tr>
@@ -42,13 +42,21 @@ export default {
     filters: {
         formatDate(value) {
             if (value) {
-                return moment(String(value)).format('DD/MM/YYYY hh:mm');
+                return moment(String(value)).format('DD/MM/YYYY HH:mm');
             }
         },
     },
+    methods: {
+        async getArticles() {
+            const response = await axios.get('/api/articles');
+            this.articles = response.data.data;
+        },
+        editArticle(slug) {
+            this.$router.replace({name: 'editArticle', params: {slug}});
+        }
+    },
     async mounted() {
-        const response = await axios.get('/api/articles');
-        this.articles = response.data.data;
+        await this.getArticles();
     },
 };
 </script>
