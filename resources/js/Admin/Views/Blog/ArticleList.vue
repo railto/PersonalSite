@@ -19,8 +19,12 @@
                 <td class="p-3 px-5">{{ article.published_at | formatDate }}</td>
                 <td class="p-3 px-5">{{ article.updated_at |formatDate }}</td>
                 <td class="p-3 px-5 flex justify-end">
-                    <button class="bg-indigo-600 text-white mr-3 py-1 px-2" type="button" @click="editArticle(article.slug)">Edit</button>
-                    <button class="bg-red-600 text-white p-2 py-1 px-2" type="button" @click="deleteArticle(article.slug)">Delete</button>
+                    <button class="bg-indigo-600 text-white mr-3 py-1 px-2" type="button"
+                            @click="editArticle(article.slug)">Edit
+                    </button>
+                    <button class="bg-red-600 text-white p-2 py-1 px-2" type="button"
+                            @click="deleteArticle(article.slug)">Delete
+                    </button>
                 </td>
             </tr>
             </tbody>
@@ -31,6 +35,7 @@
 <script>
 import axios from 'axios';
 import moment from 'moment'
+import {mapActions} from 'vuex';
 
 export default {
     name: 'BlogArticleList',
@@ -47,6 +52,9 @@ export default {
         },
     },
     methods: {
+        ...mapActions({
+            flashMessage: 'messages/showMessage',
+        }),
         async getArticles() {
             const response = await axios.get('/api/articles');
             this.articles = response.data.data;
@@ -57,6 +65,9 @@ export default {
         async deleteArticle(slug) {
             if (confirm('Are you sure you want to delete this article?')) {
                 await axios.delete(`/api/articles/${slug}`);
+
+                this.flashMessage({text: 'Article Successfully Updated', type: 'success'});
+
                 await this.getArticles();
             }
         }

@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 
 import appStore from './Admin/Store/app';
+import messageStore from './Admin/Store/message';
 
 import Dashboard from "./Admin/Views/Dashboard";
 import ArticleList from "./Admin/Views/Blog/ArticleList";
@@ -46,6 +47,7 @@ const router = new VueRouter({
 const store = new Vuex.Store({
     modules: {
         appStore,
+        messages: messageStore,
     }
 })
 

@@ -13,6 +13,7 @@
                 </div>
             </div>
         </div>
+        <FlashMessage />
     </div>
 </template>
 
@@ -21,12 +22,14 @@ import {mapGetters} from 'vuex';
 
 import Sidebar from './Components/Sidebar';
 import Navbar from "./Components/Navbar";
+import FlashMessage from "./Components/FlashMessage";
 
 export default {
     name: 'admin',
     components: {
         Sidebar,
         Navbar,
+        FlashMessage,
     },
     computed: {
         ...mapGetters({

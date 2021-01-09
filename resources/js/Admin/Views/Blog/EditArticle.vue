@@ -47,6 +47,8 @@
 
 <script>
 import axios from 'axios';
+import {mapActions} from 'vuex';
+
 import MarkdownEditor from "../../Components/MarkdownEditor";
 
 export default {
@@ -66,6 +68,7 @@ export default {
         };
     },
     methods: {
+
         async getArticle(slug) {
             const response = await axios.get(`/api/articles/${slug}`);
 
@@ -75,11 +78,12 @@ export default {
             try {
                 await axios.put(`/api/articles/${this.article.slug}`, this.article);
 
+                this.flashMessage({text: 'Article Successfully Updated', type: 'success'});
                 await this.$router.replace({name: 'articleList'});
             } catch (err) {
                 this.errors = err.response.data.errors;
             }
-        }
+        },
     },
     async mounted() {
         await this.getArticle(this.$route.params.slug);
