@@ -33,10 +33,10 @@
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="content">
                         Content
                     </label>
-                    <MarkdownEditor v-model="form.content" />
+                    <MarkdownEditor v-model="form.content" label="content"/>
                 </div>
             </div>
             <button type="submit" class="bg-indigo-500 text-white px-4 py-3 leading-none font-medium">Add Article
