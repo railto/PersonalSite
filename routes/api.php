@@ -24,3 +24,4 @@ Route::get('/articles', 'App\Http\Controllers\Api\ArticlesController@index');
 Route::post('/articles', 'App\Http\Controllers\Api\ArticlesController@store');
 Route::get('/articles/{article}','App\Http\Controllers\Api\ArticlesController@show');
 Route::put('/articles/{article}', 'App\Http\Controllers\Api\ArticlesController@update');
+Route::delete('/articles/{article}', 'App\Http\Controllers\Api\ArticlesController@destroy');

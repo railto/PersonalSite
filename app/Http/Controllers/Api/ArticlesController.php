@@ -68,4 +68,11 @@ class ArticlesController extends Controller
 
         return response(new ArticleResource($article), 200);
     }
+
+    public function destroy(Article $article): Response
+    {
+        $article->delete();
+
+        return response('', 204);
+    }
 }
