@@ -33,13 +33,10 @@
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="content">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                         Content
                     </label>
-                    <textarea
-                        class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                        id="content" v-model="form.content" @input="updatePreview"></textarea>
-                    <div v-html="compiledMarkdown"></div>
+                    <MarkdownEditor v-model="form.content" />
                 </div>
             </div>
             <button type="submit" class="bg-indigo-500 text-white px-4 py-3 leading-none font-medium">Add Article
@@ -50,11 +47,13 @@
 
 <script>
 import axios from 'axios';
-import marked from 'marked';
-import {debounce} from 'lodash';
+import MarkdownEditor from "../../Components/MarkdownEditor";
 
 export default {
     name: 'AddArticle',
+    components: {
+        MarkdownEditor
+    },
     data() {
         return {
             form: {
@@ -64,11 +63,6 @@ export default {
             },
             errors: null,
         };
-    },
-    computed: {
-        compiledMarkdown: function() {
-            return marked(this.form.content, {sanitise: true});
-        },
     },
     methods: {
         async addArticle() {
@@ -82,10 +76,6 @@ export default {
                 this.errors = err.response.data.errors;
             }
         },
-
-        updatePreview:debounce(function (e) {
-            this.form.content = e.target.value;
-        }, 300)
     },
 };
 </script>
