@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/newsletter/subscribe', 'App\Http\Controllers\NewsletterController@subscribe')->name('newsletter.subscribe');
 
 Route::get('/articles', 'App\Http\Controllers\Api\ArticlesController@index');
+Route::post('/articles', 'App\Http\Controllers\Api\ArticlesController@store');
