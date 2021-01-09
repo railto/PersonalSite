@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         <h1 class="mb-4">Add New Article</h1>
         <form action="#" @submit.prevent="addArticle">
             <div v-if="errors" class="bg-red-600 text-white py-2 px-4 pr-0 font-bold mb-4 shadow-lg">
@@ -38,7 +38,8 @@
                     </label>
                     <textarea
                         class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                        id="content" v-model="form.content"></textarea>
+                        id="content" v-model="form.content" @input="updatePreview"></textarea>
+                    <div v-html="compiledMarkdown"></div>
                 </div>
             </div>
             <button type="submit" class="bg-indigo-500 text-white px-4 py-3 leading-none font-medium">Add Article
@@ -49,6 +50,8 @@
 
 <script>
 import axios from 'axios';
+import marked from 'marked';
+import {debounce} from 'lodash';
 
 export default {
     name: 'AddArticle',
@@ -62,6 +65,11 @@ export default {
             errors: null,
         };
     },
+    computed: {
+        compiledMarkdown: function() {
+            return marked(this.form.content, {sanitise: true});
+        },
+    },
     methods: {
         async addArticle() {
             try {
@@ -74,6 +82,10 @@ export default {
                 this.errors = err.response.data.errors;
             }
         },
+
+        updatePreview:debounce(function (e) {
+            this.form.content = e.target.value;
+        }, 300)
     },
 };
 </script>
