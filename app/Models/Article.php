@@ -12,6 +12,10 @@ class Article extends Model implements Feedable
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title', 'slug', 'published_at', 'content',
+    ];
+
     /**
      * Get the route key for the model.
      *

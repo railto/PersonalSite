@@ -1,0 +1,58 @@
+require('./bootstrap');
+
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Vuex from 'vuex';
+
+import appStore from './Admin/Store/app';
+import messageStore from './Admin/Store/message';
+
+import Dashboard from "./Admin/Views/Dashboard";
+import ArticleList from "./Admin/Views/Blog/ArticleList";
+import AddArticle from "./Admin/Views/Blog/AddArticle";
+import EditArticle from "./Admin/Views/Blog/EditArticle";
+
+Vue.use(VueRouter);
+Vue.use(Vuex);
+
+Vue.component('admin', require('./Admin/Admin.vue').default);
+
+const router = new VueRouter({
+    mode: 'history',
+    base: '/admin',
+    routes: [
+        {
+            path: '/',
+            name: 'dashboard',
+            component: Dashboard,
+        },
+        {
+            path: '/articles',
+            name: 'articleList',
+            component: ArticleList,
+        },
+        {
+            path: '/articles/new',
+            name: 'addArticle',
+            component: AddArticle,
+        },
+        {
+            path: '/articles/:slug/edit',
+            name: 'editArticle',
+            component: EditArticle,
+        },
+    ],
+});
+
+const store = new Vuex.Store({
+    modules: {
+        appStore,
+        messages: messageStore,
+    }
+})
+
+new Vue({
+    el: '#app',
+    router,
+    store,
+});
