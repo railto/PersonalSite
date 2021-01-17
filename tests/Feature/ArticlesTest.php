@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
@@ -113,5 +114,20 @@ class ArticlesTest extends TestCase
         $response->assertDontSee($article->title);
         $response->assertDontSee(Carbon::parse($article->published_at)->format('jS F Y'), true);
         $response->assertDontSee($article->content);
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_view_an_unpublished_article()
+    {
+        $article = Article::factory()->unpublished()->create();
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $response = $this->get("/blog/{$article->slug}");
+
+        $response->assertStatus(200);
+        $response->assertSee($article->title);
+        $response->assertSee(Carbon::parse($article->published_at)->format('jS F Y'), true);
+        $response->assertSee($article->content);
     }
 }

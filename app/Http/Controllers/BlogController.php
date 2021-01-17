@@ -16,7 +16,7 @@ class BlogController extends Controller
 
     public function show(Article $article)
     {
-        if (!$article->published_at || Carbon::parse($article->published_at)->greaterThan(Carbon::now())) {
+        if ((!$article->published_at || Carbon::parse($article->published_at)->greaterThan(Carbon::now())) && auth()->guest()) {
             abort(404);
         }
 
