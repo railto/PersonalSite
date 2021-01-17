@@ -15,8 +15,8 @@ class LoginTest extends TestCase
     {
         $response = $this->get('/login');
 
-        $response->assertSee('E-Mail Address:');
-        $response->assertSee('Password:');
+        $response->assertSee('Email Address');
+        $response->assertSee('Password');
     }
 
     /** @test */
