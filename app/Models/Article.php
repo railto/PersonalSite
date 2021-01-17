@@ -5,12 +5,13 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 class Article extends Model implements Feedable
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'title', 'slug', 'published_at', 'content',

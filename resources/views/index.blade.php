@@ -1,10 +1,11 @@
-@extends('layouts.app')
+@extends('layout.app')
 
 @section('content')
     <section>
         <div class="max-w-3xl px-6 text-center mx-auto">
             <h2 class="text-3xl font-semibold text-gray-800">Hi there, <span
                     class="bg-indigo-600 text-white px-1">I'm Mark</span>.</h2>
+            <img src="/img/headshot.jpg" alt="Mark Railton" class="w-48 mx-auto my-8 rounded-full">
             <p class="text-gray-600 mt-8 mb-8">
                 I'm a software developer living in the beautiful County Wicklow, Ireland focusing on building web
                 applications using PHP, Python and JavaScript.
@@ -43,7 +44,7 @@
 
             <div class="flex flex-col items-center justify-center mt-6">
                 @foreach($articles as $article)
-                    <a class="mb-8 max-w-3xl w-full block bg-white shadow-md border-t-4 border-indigo-600 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+                    <a class="mb-8 max-w-3xl w-full block bg-white shadow-md border-t-4 border-indigo-600"
                        href="{{ route('blog.article', ['article' => $article->slug]) }}">
                         <div class="flex items-center justify-between px-4 py-2">
                             <h3 class="text-lg font-medium text-gray-700">

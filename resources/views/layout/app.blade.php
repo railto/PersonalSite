@@ -15,10 +15,12 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    @include('layout.favicon')
 </head>
 <body>
 @include('googletagmanager::body')
-<div id="app">
+<div id="app" class="h-screen">
     <header>
         <site-nav />
     </header>

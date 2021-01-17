@@ -30,7 +30,6 @@
         <div
             class="w-full flex-grow lg:flex lg:items-center lg:w-auto"
             :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
-            @click.away="isOpen = false"
         >
 
             <ul class="pt-6 lg:pt-0 mb-0 list-reset lg:flex justify-end flex-1 items-center">
@@ -46,13 +45,23 @@
                     <a class="inline-block py-2 px-4 text-white no-underline" href="/uses"
                        @click="isOpen = false">Uses</a>
                 </li>
+                <li class="mr-3">
+                    <div class="inline-block py-2 px-4">
+                        <ArticleSearch/>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
 </template>
 
 <script>
+import ArticleSearch from "./ArticleSearch";
+
 export default {
+    components: {
+        ArticleSearch,
+    },
     data() {
         return {
             isOpen: false,
