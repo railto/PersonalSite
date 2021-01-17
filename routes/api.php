@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ArticleSearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::post('/articles', 'App\Http\Controllers\Api\ArticlesController@store');
 Route::get('/articles/{article}','App\Http\Controllers\Api\ArticlesController@show');
 Route::put('/articles/{article}', 'App\Http\Controllers\Api\ArticlesController@update');
 Route::delete('/articles/{article}', 'App\Http\Controllers\Api\ArticlesController@destroy');
+Route::post('/articles/search', ArticleSearchController::class);

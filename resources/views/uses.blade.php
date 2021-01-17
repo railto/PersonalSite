@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 
 @section('content')
     <section class="w-full sm:w-1/2 md:w-1/2 mx-auto">

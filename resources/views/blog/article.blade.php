@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 <x-social-media-meta-tags
     title="{{ $article->title }}"
     description="{{ $article->title }}"
