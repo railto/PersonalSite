@@ -20,12 +20,12 @@
 </head>
 <body>
 @include('googletagmanager::body')
-<div id="app" class="h-screen">
+<div id="app" class="flex flex-col h-screen justify-between">
     <header>
         <site-nav />
     </header>
 
-    <div class="mx-auto mt-12">
+    <div class="w-full mx-auto mt-12">
         @yield('content')
     </div>
 
