@@ -1,8 +1,9 @@
 <template>
-    <div class="container">
+    <div>
         <form action="" @submit.prevent="search">
             <label for="query" class="sr-only">Search Query</label>
-            <input type="text" id="query" v-model="query" placeholder="Search Blog Articles" v-debounce:300ms="search"
+            <input class="form-input rounded-none" type="text" id="query" v-model="query"
+                   placeholder="Search Blog Articles" v-debounce:300ms="search"
                    autofocus>
         </form>
 

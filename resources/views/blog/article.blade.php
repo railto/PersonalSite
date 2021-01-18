@@ -1,8 +1,9 @@
 @extends('layout.app')
+
 <x-social-media-meta-tags
     title="{{ $article->title }}"
     description="{{ $article->title }}"
-    />
+/>
 
 @section('content')
     <div class="max-w-4xl px-6 pb-20 mx-auto">
@@ -13,5 +14,5 @@
             @parsedown($article->content)
         </p>
     </div>
-    <newsletter-subscribe />
+    <newsletter-subscribe/>
 @endsection()
