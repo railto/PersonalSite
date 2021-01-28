@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    @include('googletagmanager::head')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,10 +20,9 @@
     @include('layout.favicon')
 </head>
 <body>
-@include('googletagmanager::body')
 <div id="app" class="flex flex-col h-screen justify-between">
     <header>
-        <site-nav />
+        <site-nav/>
     </header>
 
     <div class="w-full mx-auto mt-12">
