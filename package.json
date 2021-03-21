@@ -11,6 +11,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "alpinejs": "^2.8.1",
         "autoprefixer": "^10.2.5",
         "laravel-mix": "^6.0.13",
         "postcss": "^8.2.8",
