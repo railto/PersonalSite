@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "build": "npm run production",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
@@ -10,9 +11,9 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "autoprefixer": "^10.2.5",
+        "laravel-mix": "^6.0.13",
+        "postcss": "^8.2.8",
+        "tailwindcss": "^2.0.4"
     }
 }
