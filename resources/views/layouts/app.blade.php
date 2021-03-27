@@ -19,12 +19,12 @@
     <title>Mark Railton</title>
 </head>
 
-<body class="flex flex-col h-screen justify-between">
+<body>
     <header>
         <nav class="flex items-center justify-between px-4 lg:px-32 py-2 flex-wrap w-full z-10 top-0" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" :class="{ 'shadow-lg bg-indigo-600' : isOpen , 'bg-indigo-600' : !isOpen}">
             <!--Logo etc-->
             <div class="flex items-center text-white mr-6">
-                <a class="flex items-center text-white" href="#">
+                <a class="flex items-center text-white" href="{{ route('index') }}">
                     <svg class="h-6 w-6 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                     </svg>
@@ -49,14 +49,16 @@
                         <a class="inline-block py-2 px-4 text-white no-underline" href="{{ route('index') }}" @click="isOpen = false">Home</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-white no-underline" href="" @click="isOpen = false">Blog Articles</a>
+                        <a class="inline-block py-2 px-4 text-white no-underline" href="{{ route('articles.list') }}" @click="isOpen = false">Blog Articles</a>
                     </li>
                     <li class="mr-3">
                         <a class="inline-block py-2 px-4 text-white no-underline" href="{{ route('uses') }}" @click="isOpen = false">Uses</a>
                     </li>
-                    <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-white no-underline" href="{{ route('filament.dashboard') }}" @click="isOpen = false">Admin</a>
-                    </li>
+                    @auth()
+                        <li class="mr-3">
+                            <a class="inline-block py-2 px-4 text-white no-underline" href="{{ route('filament.dashboard') }}" @click="isOpen = false">Admin</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </nav>
