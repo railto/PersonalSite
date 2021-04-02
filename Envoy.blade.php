@@ -18,9 +18,9 @@
     composer
     npm_install
     npm_run_prod
+    update_symlinks
     migrate
     optimize
-    update_symlinks
     clean_old_releases
 @endstory
 
