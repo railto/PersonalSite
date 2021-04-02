@@ -17,13 +17,13 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "lorisleiva/laravel-deployer": "^0.3.5",
         "parsedown/laravel": "^1.2",
         "spatie/laravel-backup": "^7.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "laravel/envoy": "^2.7",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
