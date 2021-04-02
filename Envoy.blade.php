@@ -14,7 +14,6 @@
 @servers(['forge@forge.markrailton.com'])
 
 @story('deploy')
-    backup
     git
     composer
     npm_install
