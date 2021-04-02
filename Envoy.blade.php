@@ -1,6 +1,6 @@
 @setup
     $repo = 'git@github.com:railto/PersonalSite.git';
-    $baseDir = 'markrailton.com';
+    $baseDir = '/home/forge/markrailton.com';
     $releaseDir = $baseDir . '/releases';
     $currentDir = $baseDir . '/current';
     $release = date('Ymd-His');
