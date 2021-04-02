@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('twitter:update')->everyFourHours();
+        $schedule->command('backup:run')->dailyAt('03:00');
     }
 
     /**
