@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
         "parsedown/laravel": "^1.2",
+        "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-backup": "^7.3"
     },
     "require-dev": {
