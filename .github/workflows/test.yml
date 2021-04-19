@@ -38,3 +38,14 @@ jobs:
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         run: curl ${{ secrets.FORGE_HOOK }}
+
+      - name: Create Sentry.io release
+        if: github.ref == 'refs/heads/main'
+        uses: tclindner/sentry-releases-action@v1.2.0
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: railto
+          SENTRY_PROJECT: personal-site
+        with:
+          tagName: ${{ github.ref }}
+          environment: production
