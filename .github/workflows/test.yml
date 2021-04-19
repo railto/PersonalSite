@@ -28,7 +28,7 @@ jobs:
 
       - name: Setup env
         run:
-          - cp .env.example
+          - cp .env.example .env
           - php artisan key:generate
 
       - name: Execute PHP Tests
