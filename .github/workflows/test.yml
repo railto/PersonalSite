@@ -23,11 +23,19 @@ jobs:
             coverage: none
             tools: composer:v2
 
-      - name: Install JS dependencies
-        run: npm ci
-
       - name: Install PHP dependencies
         run: composer install --no-interaction --no-progress
 
+      - name: Setup env
+        run:
+          - cp .env.example
+          - php artisan key:generate
+
       - name: Execute PHP Tests
         run: vendor/bin/phpunit
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
