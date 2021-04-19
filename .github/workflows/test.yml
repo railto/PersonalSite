@@ -1,11 +1,6 @@
-on:
-  push:
-    branches:
-      - '**'
-      - '!main'
-  pull_request:
-      branches:
-        - '**'
+name: Tests
+
+on: [push, pull_request]
 
 jobs:
   tests:
@@ -18,25 +13,22 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-            php-version: 8.0
-            extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, mysql
-            coverage: none
-            tools: composer:v2
+          php-version: 8.0
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: none
 
-      - name: Install PHP dependencies
-        run: composer install --no-interaction --no-progress
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
 
-      - name: Copy env
-        run: cp .env.example .env
-
-      - name: Generate Key
-        run: php artisan key:generate
-
-      - name: Execute PHP Tests
-        run: vendor/bin/phpunit
-
-      - name: Install JS dependencies
+      - name: Install NPM dependencies
         run: npm ci
 
-      - name: Build assets
-        run: npm run build
+      - name: Compile assets
+        run: npm run production
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: curl ${{ secrets.FORGE_HOOK }}
