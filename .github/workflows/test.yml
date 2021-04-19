@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Install PHP dependencies
-        run: composer install --prefer-stable --ignore-platform-req=php --no-interaction --no-progress
+        run: composer install --no-interaction --no-progress
 
       - name: Execute PHP Tests
         run: vendor/bin/phpunit
