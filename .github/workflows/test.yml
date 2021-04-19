@@ -26,8 +26,11 @@ jobs:
       - name: Install PHP dependencies
         run: composer install --no-interaction --no-progress
 
-      - name: Setup env
-        run: cp .env.example .env && php artisan key:generate
+      - name: Copy env
+        run: cp .env.example .env
+
+      - name: Generate Key
+        run: php artisan key:generate
 
       - name: Execute PHP Tests
         run: vendor/bin/phpunit
