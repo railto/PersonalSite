@@ -15,6 +15,10 @@ class Article extends Model
         'user_id', 'title', 'slug', 'content', 'published_at',
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     public static function boot()
     {
         parent::boot();
@@ -28,11 +32,6 @@ class Article extends Model
         });
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -40,6 +39,11 @@ class Article extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function path(): string
+    {
+        return route('articles.view', ['article' => $this]);
     }
 }

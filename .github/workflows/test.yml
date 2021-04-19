@@ -1,0 +1,52 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Copy Env File
+        run: cp .env.example .env
+
+      - name: Generate App Key
+        run: php artisan key:generate
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Compile assets
+        run: npm run production
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: curl ${{ secrets.FORGE_HOOK }}
+
+      - name: Create Sentry.io release
+        if: github.ref == 'refs/heads/main'
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: railto
+          SENTRY_PROJECT: personal-site
+        with:
+          version: ${{ github.sha }}
+          environment: production
+          set_commits: "skip"
