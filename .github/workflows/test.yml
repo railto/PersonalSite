@@ -20,6 +20,12 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
 
+      - name: Copy Env File
+        run: cp .env.example .env
+
+      - name: Generate App Key
+        run: php artisan key:generate
+
       - name: Install NPM dependencies
         run: npm ci
 
