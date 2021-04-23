@@ -6,6 +6,16 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: wwcd_test
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        ports:
+          - 3306:3306
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -34,6 +44,8 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
