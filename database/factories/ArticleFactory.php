@@ -28,7 +28,7 @@ class ArticleFactory extends Factory
         }
 
         return [
-            'title' => $this->faker->sentence,
+            'title' => $this->faker->sentence(),
             'content' => $this->faker->sentences(5, true),
             'published_at' => $this->faker->dateTimeBetween('-2 years', '-1 day'),
             'user_id' => $user->id,
